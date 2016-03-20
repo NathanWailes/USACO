@@ -1,0 +1,76 @@
+To convert from base 2 to base 10, take each digit and multiply it by 2 raised to the power of the digit's place.
+
+For example:
+1 binary = 1*2^0 = 1 base 10
+10 binary = 1*2^1 + 0*2^0 = 2 base 10
+1000 binary = 1*2^3 + 0*2^2 + 0*2^1 + 0*2^0 = 8*10^0 = 8
+
+To convert from base 10 to base 2, keep trying higher exponents of 2 (2^0, 2^1, 2^2, etc) until you get to one that won't divide into the number, then subtract one from the exponent (eg 2^5 = 32 and won't go into my original number of 20, so i subtract one from the exponent and get 2^4).  Then find out how many times that will go into the goal number (eg 2^4 will go into 20 one time).  Then subtract what you've done (base 10) from the goal number (base 10) and repeat.
+
+Ex:
+
+I want to convert 20 (base 10) into base 2.
+
+2^0 = 1, and (20 / 1) > 1, so I need to try a higher exponent
+2^1 = 2, and (20 / 2) > 1, so I need to try a higher exponent
+2^2 = 4, and (20 / 4) > 1, so I need to try a higher exponent
+2^3 = 8, and (20 / 8) > 1, so I need to try a higher exponent
+2^4 = 16, and (20 / 16) > 1, so I need to try a higher exponent
+2^5 = 32, and (20 / 32) < 1, so I need to use the next lower exponent (ie 4)
+
+Now I need to determine the coefficient:
+
+20 / (1 * 2^4) > 1, so I need to try a higher coefficient
+But there aren't higher coefficients to choose from (this is base 2), so I'm done.
+
+I need to look up the coefficient in my array of digits.  I need to have an array in case this is a base higher than 10 (with letter-digits, eg A, B, C): the coefficient is 1, so I go to array[1].  If the coefficient was 14, I'd go to array[14]
+
+Now I put this coefficient into an array for the final number I'm going to end up with: number += "coef".  I'll just keep tacking future digits onto the end of this string.
+
+Now I need to subtract this digit-place's total value from my goal value: coef * base ^ digit-place = 1 * 2 ^ 4 = 16, 20 - 16 = 4.
+
+If the number is 0 that means I've reached the end of the line.  If the exponent I'm using in this run is greater than 0, that means that later digits will be 0.  Eg if I'm converting 32 (base 10) to base 2, I'll have 1 * 2 ^ 5 = 32, and when I subtract this digit-place's value of 32 from my base 10 # of 32 I'll get zero.  But if I return the number at this point I'll just have a string that says "1".  So I need to tack on zeros for every exponent value above 0 that my current exponent is, eg 32 is 2 to the 5th power, so I need to tack on 5 zeros to the end of the string to put that 1 in the 2^5th digit place: 100000.
+
+If I was left with a value greater than zero I need to run this program again within this program and tack on the result:
+
+number += switch_base(4, starting base, ending base)
+
+
+
+
+
+original num: 9
+starting base: 10
+ending base: 2
+
+
+determining the exponent:
+
+first run:
+test_value = 2^0 = 1
+orig num / test = 9 / 1, it's not < 1 so i += 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

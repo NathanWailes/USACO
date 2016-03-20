@@ -1,0 +1,12 @@
+USACO
+http://train.usaco.org/usacogate
+
+
+Project Euler
+
+
+Info about C++
+http://www.cplusplus.com/doc/tutorial/
+
+Programming Chat Room
+http://irc.netsplit.de/channels/details.php?room=%23programming&net=SwiftIRC
